@@ -1,10 +1,11 @@
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render
-from django.contrib.auth.decorators import user_passes_test
-from .models import UserProfile
 
-def check_member(user):
+def is_member(user):
     return user.userprofile.role == 'Member'
 
-@user_passes_test(check_member)
+@login_required
+@user_passes_test(is_member)
 def member_view(request):
-    return render(request, "relationship_app/member_view.html")
+    return render(request, 'member_view.html')
+
