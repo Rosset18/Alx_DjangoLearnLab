@@ -1,6 +1,9 @@
 from django.db import models
 
-class YourModel(models.Model):  # ← Class definition (line 3)
-    title = models.CharField(max_length=200)  # ← Must be indented (line 4)
-    description = models.TextField()
-    # ... other fields ...
+class Book(models.Model): 
+title = models.CharField(max_length=200) 
+author = models.CharField(max_length=100) 
+published_date = models.DateField(null=True, blank=True) 
+isbn = models.CharField(max_length=13, unique=True) 
+def __str__(self): 
+return self.title
